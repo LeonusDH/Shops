@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sparkzz</groupId>
     <artifactId>shops</artifactId>
-    <version>0.1.0-alpha</version>
+    <version>0.2.0-alpha</version>
     <name>shops</name>
     <description>
         A Shops plugin for Sponge.
