@@ -13,7 +13,7 @@ public class ShopsCommand implements CommandExecutor {
     public CommandResult execute(CommandSource source, CommandContext args) {
         source.sendMessage(Text.of(TextColors.DARK_AQUA, "===[ Shops ]==="));
         source.sendMessage(Text.of(TextColors.GREEN, "Created By: MrSparkzz"));
-        source.sendMessage(Text.of(TextColors.GREEN, "Version: 0.2.0-alpha"));
+        source.sendMessage(Text.of(TextColors.GREEN, "Version: 0.3.0-alpha"));
         source.sendMessage(Text.of(TextColors.DARK_AQUA, "===[ Shops ]==="));
 
         return CommandResult.success();

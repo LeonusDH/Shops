@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 import static net.sparkzz.shops.command.Commands.register;
 
-@Plugin(id = "shops", name = "Shops", version = "0.2.0-alpha", description = "Command Based Shops", authors = {"MrSparkzz"})
+@Plugin(id = "shops", name = "Shops", version = "0.3.0-alpha", description = "Command Based Shops", authors = {"MrSparkzz"})
 public class Shops {
 
     @Inject

@@ -12,6 +12,13 @@ public class Commands {
     private static CommandSpec info = CommandSpec.builder()
             .description(Text.of("Get shop info"))
             .executor(new ShopsCommand()).build();
+    private static CommandSpec buy = CommandSpec.builder()
+            .description(Text.of("Buy an item from a shop"))
+            .arguments(
+                    GenericArguments.catalogedElement(Text.of("item"), CatalogTypes.ITEM_TYPE),
+                    GenericArguments.integer(Text.of("quantity"))
+            )
+            .executor(new BuyCommand()).build();
     private static CommandSpec sell = CommandSpec.builder()
             .description(Text.of("Sell an item to a shop"))
             .arguments(
@@ -23,6 +30,7 @@ public class Commands {
 
     public static void register(Shops plugin) {
         Sponge.getCommandManager().register(plugin, info, "shops");
+        Sponge.getCommandManager().register(plugin, buy, "buy");
         Sponge.getCommandManager().register(plugin, sell, "sell");
     }
 }
