@@ -7,12 +7,9 @@ import org.spongepowered.api.command.args.CommandContext;
 import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
-import org.spongepowered.api.item.inventory.Inventory;
 import org.spongepowered.api.item.inventory.ItemStack;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
-
-import java.util.Optional;
 
 public class SellCommand implements CommandExecutor {
 
@@ -29,20 +26,8 @@ public class SellCommand implements CommandExecutor {
         }
 
         ItemStack itemStack = ItemStack.builder().itemType(args.<ItemType>getOne("item").get()).quantity(args.<Integer>getOne("quantity").get()).build();
-        Inventory inventory = ((Player) source).getInventory();
 
-        if (!inventory.contains(itemStack)) {
-            source.sendMessage(Text.of(TextColors.RED, "Transaction failed!"));
-            return CommandResult.success();
-        }
-
-        itemStack = IMS.removeItemFromPlayer(inventory, Optional.of(itemStack)).get();
-
-        if (itemStack.isEmpty()) {
-            source.sendMessage(Text.of(TextColors.RED, "Transaction failed!"));
-            return CommandResult.success();
-        }
-
+        if (!IMS.transferFrom((Player) source, itemStack)) return CommandResult.success();
         source.sendMessage(Text.of(TextColors.GREEN, "Transaction success!"));
         return CommandResult.success();
     }

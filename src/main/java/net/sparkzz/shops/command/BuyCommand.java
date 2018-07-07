@@ -8,7 +8,6 @@ import org.spongepowered.api.command.spec.CommandExecutor;
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.item.ItemType;
 import org.spongepowered.api.item.inventory.ItemStack;
-import org.spongepowered.api.item.inventory.entity.PlayerInventory;
 import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 
@@ -27,16 +26,9 @@ public class BuyCommand implements CommandExecutor {
         }
 
         ItemStack itemStack = ItemStack.builder().itemType(args.<ItemType>getOne("item").get()).quantity(args.<Integer>getOne("quantity").get()).build();
-        PlayerInventory inventory = (PlayerInventory) ((Player) source).getInventory();
 
-        if (IMS.getAvailableSpace(inventory, itemStack.getType()) - itemStack.getQuantity() <= 0) {
-            source.sendMessage(Text.of(TextColors.RED, "There is no room to make this purchase!"));
-            return CommandResult.success();
-        }
-
-        inventory.offer(itemStack);
+        if (!IMS.transferTo((Player) source, itemStack)) return CommandResult.success();
         source.sendMessage(Text.of(TextColors.GREEN, "Transaction success!"));
-
         return CommandResult.success();
     }
 }
